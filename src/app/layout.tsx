@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Background from "@/components/Background";
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,13 +22,16 @@ export const metadata: Metadata = {
   description: "A simple portfolio using Next.js",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Background />
+        {children}
+      </body>
     </html>
   );
 }
